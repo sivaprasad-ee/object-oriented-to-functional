@@ -26,3 +26,13 @@ cd user-management
 ./mvnw test
 ./mvnw spring-boot:run
 ```
+
+```shell
+curl --location --request POST 'http://localhost:8080/api/users' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Siva",
+    "email": "siva@gmail.com",
+    "phone": "91919191"
+}'
+```
