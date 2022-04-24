@@ -16,3 +16,13 @@ The usecase is a simple user registration process.
 This is a very common requirement in typical enterprise business applications where the business process results in side-effects.
 
 The goal is to learn how to approach this usecase using FP.
+
+## Approaches
+
+1. SpringBoot OO with side-effects
+
+```shell
+cd user-management
+./mvnw test
+./mvnw spring-boot:run
+```
