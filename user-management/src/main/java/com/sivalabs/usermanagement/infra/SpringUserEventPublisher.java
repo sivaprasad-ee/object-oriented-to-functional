@@ -1,12 +1,14 @@
-package com.sivalabs.usermanagement.domain.events;
+package com.sivalabs.usermanagement.infra;
 
+import com.sivalabs.usermanagement.domain.UserEventPublisher;
+import com.sivalabs.usermanagement.domain.events.UserCreatedEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class UserEventPublisher {
+class SpringUserEventPublisher implements UserEventPublisher {
     private final ApplicationEventPublisher eventPublisher;
 
     public void publish(UserCreatedEvent event) {

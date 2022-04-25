@@ -1,7 +1,7 @@
 package com.sivalabs.usermanagement.api;
 
 import com.sivalabs.usermanagement.domain.events.UserCreatedEvent;
-import com.sivalabs.usermanagement.domain.events.UserEventListener;
+import com.sivalabs.usermanagement.infra.SpringUserEventListener;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -26,7 +26,7 @@ class UserControllerTest {
     MockMvc mockMvc;
 
     @MockBean
-    UserEventListener userEventListener;
+    SpringUserEventListener userEventListener;
 
     @Captor
     ArgumentCaptor<UserCreatedEvent> eventCaptor;

@@ -2,9 +2,9 @@ package com.sivalabs.usermanagement.domain.registration;
 
 import com.sivalabs.usermanagement.common.BadRequestException;
 import com.sivalabs.usermanagement.domain.User;
+import com.sivalabs.usermanagement.domain.UserEventPublisher;
 import com.sivalabs.usermanagement.domain.UserRepository;
 import com.sivalabs.usermanagement.domain.events.UserCreatedEvent;
-import com.sivalabs.usermanagement.domain.events.UserEventPublisher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
