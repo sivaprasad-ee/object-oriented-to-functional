@@ -10,8 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -22,10 +20,7 @@ public class UserRegistrationService {
     private final UserEventPublisher userEventPublisher;
 
     public User createUser(CreateUserRequest request) {
-        List<String> errors = createUserRequestValidator.validate(request);
-        if(!errors.isEmpty()) {
-            throw new BadRequestException("Invalid user registration request", errors);
-        }
+        createUserRequestValidator.validate(request);
         User user = new User(null, request.getName(), request.getEmail(), request.getPhone());
         User savedUser = this.userRepository.save(user);
         UserCreatedEvent event = new UserCreatedEvent(savedUser.getId(), savedUser.getName(), savedUser.getEmail(), savedUser.getPhone());

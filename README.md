@@ -9,7 +9,8 @@ The usecase is a simple user registration process.
 
 1. User sends a Registration request with name, email, phoneNumber
 2. Validate the input: `name` and `email` should not be blank/empty
-3. We need to verify whether a user already registered with same email? If yes, then respond with Bad Request status with appropriate error message.
+3. We need to verify whether a user already registered with same email? 
+   If yes, then respond with Conflict Request status with appropriate error message.
 4. Persist the user details in DB
 5. Publish a UserCreatedEvent to a MessageBroker like Kafka/RabbitMQ
 

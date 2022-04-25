@@ -1,7 +1,12 @@
 package com.sivalabs.usermanagement.api;
 
+import com.sivalabs.usermanagement.domain.User;
+import com.sivalabs.usermanagement.domain.UserRepository;
 import com.sivalabs.usermanagement.domain.events.UserCreatedEvent;
 import com.sivalabs.usermanagement.infra.SpringUserEventListener;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -25,11 +30,24 @@ class UserControllerTest {
     @Autowired
     MockMvc mockMvc;
 
+    @Autowired
+    UserRepository userRepository;
+
     @MockBean
     SpringUserEventListener userEventListener;
 
     @Captor
     ArgumentCaptor<UserCreatedEvent> eventCaptor;
+
+    @BeforeEach
+    void setup() {
+        userRepository.save(new User(null, "Admin", "admin@gmail.com", "12345678"));
+    }
+
+    @AfterEach
+    void tearDown() {
+        userRepository.deleteAllInBatch();
+    }
 
     @Test
     void shouldRegisterUserSuccessfully() throws Exception {
@@ -48,5 +66,35 @@ class UserControllerTest {
         Mockito.verify(userEventListener).handleUserCreatedEvent(eventCaptor.capture());
         UserCreatedEvent event = eventCaptor.getValue();
         assertThat(event.getName()).isEqualTo("Siva");
+    }
+
+    @Test
+    void shouldReturnBadRequestError() throws Exception {
+        String payload = """
+                {
+                    "name": "Admin",
+                    "email": "",
+                    "phone": "91919191"
+                }
+                """;
+        mockMvc.perform(post("/api/users")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(payload)
+        ).andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void shouldReturnUserExistsError() throws Exception {
+        String payload = """
+                {
+                    "name": "Admin",
+                    "email": "admin@gmail.com",
+                    "phone": "91919191"
+                }
+                """;
+        mockMvc.perform(post("/api/users")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(payload)
+        ).andExpect(status().isConflict());
     }
 }
