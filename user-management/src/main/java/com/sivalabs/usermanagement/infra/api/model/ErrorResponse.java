@@ -1,4 +1,4 @@
-package com.sivalabs.usermanagement.api.model;
+package com.sivalabs.usermanagement.infra.api.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

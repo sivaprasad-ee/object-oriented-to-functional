@@ -1,6 +1,6 @@
-package com.sivalabs.usermanagement.infra;
+package com.sivalabs.usermanagement.infra.userrepository;
 
-import com.sivalabs.usermanagement.domain.ResourceAlreadyExistsException;
+import com.sivalabs.usermanagement.domain.UserAlreadyExistsException;
 import com.sivalabs.usermanagement.domain.User;
 import com.sivalabs.usermanagement.domain.UserRepository;
 import com.sivalabs.usermanagement.domain.registration.CreateUserRequest;
@@ -16,12 +16,13 @@ public class DefaultUserRepository implements UserRepository {
     @Override
     public User save(CreateUserRequest request) {
         try {
-            User user = new User(null, request.getName(), request.getEmail(), request.getPhone());
-            return jpaUserRepository.save(user);
+            UserEntity entity = new UserEntity(null, request.getName(), request.getEmail(), request.getPhone());
+            UserEntity savedUser = jpaUserRepository.save(entity);
+            return new User(savedUser.getId(), savedUser.getName(), savedUser.getEmail(), savedUser.getPhone());
         } catch (DataIntegrityViolationException e) {
             //currently only email is unique so making an assumption here
             //there should be a better way to identify which exact field/column is causing the problem
-            throw new ResourceAlreadyExistsException("User already exists with given email");
+            throw new UserAlreadyExistsException("User already exists with given email");
         }
     }
 

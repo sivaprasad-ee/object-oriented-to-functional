@@ -1,4 +1,4 @@
-package com.sivalabs.usermanagement.infra;
+package com.sivalabs.usermanagement.infra.events;
 
 import com.sivalabs.usermanagement.domain.events.UserCreatedEvent;
 import lombok.extern.slf4j.Slf4j;

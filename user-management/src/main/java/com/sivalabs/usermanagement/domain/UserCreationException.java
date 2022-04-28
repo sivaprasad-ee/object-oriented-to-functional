@@ -3,10 +3,10 @@ package com.sivalabs.usermanagement.domain;
 import java.util.Collections;
 import java.util.List;
 
-public class BadRequestException extends RuntimeException {
+public class UserCreationException extends RuntimeException {
     private final List<String> errors;
 
-    public BadRequestException(String message, List<String> errors) {
+    public UserCreationException(String message, List<String> errors) {
         super(message);
         this.errors = errors;
     }

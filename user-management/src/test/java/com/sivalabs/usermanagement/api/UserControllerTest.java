@@ -3,7 +3,7 @@ package com.sivalabs.usermanagement.api;
 import com.sivalabs.usermanagement.domain.UserRepository;
 import com.sivalabs.usermanagement.domain.events.UserCreatedEvent;
 import com.sivalabs.usermanagement.domain.registration.CreateUserRequest;
-import com.sivalabs.usermanagement.infra.SpringUserEventListener;
+import com.sivalabs.usermanagement.infra.events.SpringUserEventListener;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

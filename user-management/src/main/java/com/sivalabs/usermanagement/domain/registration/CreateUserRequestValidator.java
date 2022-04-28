@@ -1,6 +1,6 @@
 package com.sivalabs.usermanagement.domain.registration;
 
-import com.sivalabs.usermanagement.domain.BadRequestException;
+import com.sivalabs.usermanagement.domain.UserCreationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ class CreateUserRequestValidator {
             errors.add("Email is required");
         }
         if(!errors.isEmpty()) {
-            throw new BadRequestException("Invalid user registration request", errors);
+            throw new UserCreationException("Invalid user registration request", errors);
         }
     }
 

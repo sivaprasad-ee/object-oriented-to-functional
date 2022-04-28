@@ -1,4 +1,4 @@
-package com.sivalabs.usermanagement.infra;
+package com.sivalabs.usermanagement.infra.events;
 
 import com.sivalabs.usermanagement.domain.UserEventPublisher;
 import com.sivalabs.usermanagement.domain.events.UserCreatedEvent;

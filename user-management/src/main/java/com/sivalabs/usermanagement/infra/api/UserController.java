@@ -1,8 +1,8 @@
-package com.sivalabs.usermanagement.api;
+package com.sivalabs.usermanagement.infra.api;
 
-import com.sivalabs.usermanagement.api.model.ErrorResponse;
-import com.sivalabs.usermanagement.domain.BadRequestException;
-import com.sivalabs.usermanagement.domain.ResourceAlreadyExistsException;
+import com.sivalabs.usermanagement.infra.api.model.ErrorResponse;
+import com.sivalabs.usermanagement.domain.UserCreationException;
+import com.sivalabs.usermanagement.domain.UserAlreadyExistsException;
 import com.sivalabs.usermanagement.domain.registration.CreateUserRequest;
 import com.sivalabs.usermanagement.domain.User;
 import com.sivalabs.usermanagement.domain.registration.UserRegistrationService;
@@ -29,14 +29,14 @@ public class UserController {
         return ResponseEntity.created(location).build();
     }
 
-    @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<ErrorResponse> handleBadRequestException(BadRequestException e) {
+    @ExceptionHandler(UserCreationException.class)
+    public ResponseEntity<ErrorResponse> handleBadRequestException(UserCreationException e) {
         ErrorResponse response = new ErrorResponse(e.getMessage(), e.getErrors());
         return ResponseEntity.status(BAD_REQUEST).body(response);
     }
 
-    @ExceptionHandler(ResourceAlreadyExistsException.class)
-    public ResponseEntity<ErrorResponse> handleResourceAlreadyExistsException(ResourceAlreadyExistsException e) {
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> handleResourceAlreadyExistsException(UserAlreadyExistsException e) {
         ErrorResponse response = new ErrorResponse(e.getMessage(), null);
         return ResponseEntity.status(CONFLICT).body(response);
     }
