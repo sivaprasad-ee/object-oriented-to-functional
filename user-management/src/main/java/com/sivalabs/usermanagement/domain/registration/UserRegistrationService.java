@@ -1,6 +1,5 @@
 package com.sivalabs.usermanagement.domain.registration;
 
-import com.sivalabs.usermanagement.common.BadRequestException;
 import com.sivalabs.usermanagement.domain.User;
 import com.sivalabs.usermanagement.domain.UserEventPublisher;
 import com.sivalabs.usermanagement.domain.UserRepository;
@@ -21,8 +20,7 @@ public class UserRegistrationService {
 
     public User createUser(CreateUserRequest request) {
         createUserRequestValidator.validate(request);
-        User user = new User(null, request.getName(), request.getEmail(), request.getPhone());
-        User savedUser = this.userRepository.save(user);
+        User savedUser = this.userRepository.save(request);
         UserCreatedEvent event = new UserCreatedEvent(savedUser.getId(), savedUser.getName(), savedUser.getEmail(), savedUser.getPhone());
         userEventPublisher.publish(event);
         return savedUser;

@@ -1,8 +1,8 @@
 package com.sivalabs.usermanagement.api;
 
 import com.sivalabs.usermanagement.api.model.ErrorResponse;
-import com.sivalabs.usermanagement.common.BadRequestException;
-import com.sivalabs.usermanagement.common.ResourceAlreadyExistsException;
+import com.sivalabs.usermanagement.domain.BadRequestException;
+import com.sivalabs.usermanagement.domain.ResourceAlreadyExistsException;
 import com.sivalabs.usermanagement.domain.registration.CreateUserRequest;
 import com.sivalabs.usermanagement.domain.User;
 import com.sivalabs.usermanagement.domain.registration.UserRegistrationService;

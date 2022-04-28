@@ -1,11 +1,10 @@
 package com.sivalabs.usermanagement.api;
 
-import com.sivalabs.usermanagement.domain.User;
 import com.sivalabs.usermanagement.domain.UserRepository;
 import com.sivalabs.usermanagement.domain.events.UserCreatedEvent;
+import com.sivalabs.usermanagement.domain.registration.CreateUserRequest;
 import com.sivalabs.usermanagement.infra.SpringUserEventListener;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -41,12 +40,12 @@ class UserControllerTest {
 
     @BeforeEach
     void setup() {
-        userRepository.save(new User(null, "Admin", "admin@gmail.com", "12345678"));
+        userRepository.save(new CreateUserRequest("Admin", "admin@gmail.com", "12345678"));
     }
 
     @AfterEach
     void tearDown() {
-        userRepository.deleteAllInBatch();
+        userRepository.deleteAll();
     }
 
     @Test

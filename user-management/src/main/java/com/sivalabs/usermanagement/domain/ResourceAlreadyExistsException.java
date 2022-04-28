@@ -1,4 +1,4 @@
-package com.sivalabs.usermanagement.common;
+package com.sivalabs.usermanagement.domain;
 
 public class ResourceAlreadyExistsException extends RuntimeException {
 

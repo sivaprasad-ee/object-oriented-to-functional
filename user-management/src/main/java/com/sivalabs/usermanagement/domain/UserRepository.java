@@ -1,8 +1,8 @@
 package com.sivalabs.usermanagement.domain;
 
-public interface UserRepository  {
-    boolean existsByEmail(String email);
-    User save(User user);
+import com.sivalabs.usermanagement.domain.registration.CreateUserRequest;
 
-    void deleteAllInBatch();
+public interface UserRepository  {
+    User save(CreateUserRequest request);
+    void deleteAll();
 }
