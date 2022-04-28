@@ -1,4 +1,4 @@
-package com.sivalabs.usermanagement.api.model;
+package com.sivalabs.usermanagement.connectors.server;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -10,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorResponse {
-    private String message;
-    private List<String> errors;
+
+  private String message;
+  private List<String> errors;
 }

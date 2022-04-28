@@ -1,7 +1,10 @@
 package com.sivalabs.usermanagement.domain;
 
-import com.sivalabs.usermanagement.domain.events.UserCreatedEvent;
+
+import com.sivalabs.usermanagement.entities.User;
 
 public interface UserEventPublisher {
-    void publish(UserCreatedEvent event);
+
+  void userCreated(User savedUser);
+
 }
