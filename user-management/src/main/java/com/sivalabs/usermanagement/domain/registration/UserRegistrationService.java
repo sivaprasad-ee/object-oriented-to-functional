@@ -17,10 +17,7 @@ public class UserRegistrationService {
   private final UserEventPublisher userEventPublisher;
 
   public User createUser(CreateUserRequest request) {
-    
-    User savedUser = this.userRepository.save(createUserRequestValidator.validate(request));
-
-    userEventPublisher.userCreated(savedUser);
-    return savedUser;
+    return userEventPublisher.userCreated(
+        userRepository.save(createUserRequestValidator.validate(request)));
   }
 }

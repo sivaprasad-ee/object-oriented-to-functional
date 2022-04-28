@@ -5,6 +5,6 @@ import com.sivalabs.usermanagement.entities.User;
 
 public interface UserEventPublisher {
 
-  void userCreated(User savedUser);
+  User userCreated(User savedUser);
 
 }
