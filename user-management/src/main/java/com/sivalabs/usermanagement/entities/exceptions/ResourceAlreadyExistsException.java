@@ -1,9 +1,0 @@
-package com.sivalabs.usermanagement.entities.exceptions;
-
-public class ResourceAlreadyExistsException extends RuntimeException {
-
-  public ResourceAlreadyExistsException(String message) {
-    super(message);
-  }
-
-}

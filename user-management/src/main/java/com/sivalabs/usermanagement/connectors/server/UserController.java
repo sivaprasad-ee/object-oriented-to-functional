@@ -2,7 +2,7 @@ package com.sivalabs.usermanagement.connectors.server;
 
 import com.sivalabs.usermanagement.entities.User;
 import com.sivalabs.usermanagement.entities.exceptions.BadRequestException;
-import com.sivalabs.usermanagement.entities.exceptions.ResourceAlreadyExistsException;
+import com.sivalabs.usermanagement.entities.exceptions.UserEmailExistsException;
 import com.sivalabs.usermanagement.domain.registration.CreateUserRequest;
 import com.sivalabs.usermanagement.domain.registration.UserRegistrationService;
 import lombok.RequiredArgsConstructor;
@@ -35,9 +35,9 @@ public class UserController {
     return ResponseEntity.status(BAD_REQUEST).body(response);
   }
 
-  @ExceptionHandler(ResourceAlreadyExistsException.class)
+  @ExceptionHandler(UserEmailExistsException.class)
   public ResponseEntity<ErrorResponse> handleResourceAlreadyExistsException(
-      ResourceAlreadyExistsException e) {
+      UserEmailExistsException e) {
     ErrorResponse response = new ErrorResponse(e.getMessage(), null);
     return ResponseEntity.status(CONFLICT).body(response);
   }
