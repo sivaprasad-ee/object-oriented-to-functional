@@ -10,7 +10,7 @@ import java.util.List;
 class CreateUserRequestValidator {
 
 
-  public void validate(CreateUserRequest request) {
+  public CreateUserRequest validate(CreateUserRequest request) {
     List<String> errors = new ArrayList<>(0);
     if (isBlank(request.getName())) {
       errors.add("Name is required");
@@ -21,6 +21,8 @@ class CreateUserRequestValidator {
     if (!errors.isEmpty()) {
       throw new BadRequestException("Invalid user registration request", errors);
     }
+
+    return request;
   }
 
   private boolean isBlank(String string) {
