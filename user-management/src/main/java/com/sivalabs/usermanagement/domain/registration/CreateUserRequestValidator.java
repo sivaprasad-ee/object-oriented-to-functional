@@ -20,7 +20,7 @@ class CreateUserRequestValidator {
     return request;
   }
 
-  private boolean isBlank(@NotNull final String string) {
+  private boolean isBlank(final String string) {
     return string == null || string.trim().length() == 0;
   }
 }
