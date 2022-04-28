@@ -1,7 +1,7 @@
 package com.sivalabs.usermanagement.connectors.server;
 
 import com.sivalabs.usermanagement.entities.User;
-import com.sivalabs.usermanagement.entities.exceptions.BadRequestException;
+import com.sivalabs.usermanagement.entities.exceptions.EmptyRequiredFieldException;
 import com.sivalabs.usermanagement.entities.exceptions.UserEmailExistsException;
 import com.sivalabs.usermanagement.domain.registration.CreateUserRequest;
 import com.sivalabs.usermanagement.domain.registration.UserRegistrationService;
@@ -29,16 +29,16 @@ public class UserController {
     return ResponseEntity.created(location).build();
   }
 
-  @ExceptionHandler(BadRequestException.class)
-  public ResponseEntity<ErrorResponse> handleBadRequestException(BadRequestException e) {
-    ErrorResponse response = new ErrorResponse(e.getMessage(), e.getErrors());
+  @ExceptionHandler(EmptyRequiredFieldException.class)
+  public ResponseEntity<ErrorResponse> handleBadRequestException(EmptyRequiredFieldException e) {
+    ErrorResponse response = new ErrorResponse(e.getMessage());
     return ResponseEntity.status(BAD_REQUEST).body(response);
   }
 
   @ExceptionHandler(UserEmailExistsException.class)
   public ResponseEntity<ErrorResponse> handleResourceAlreadyExistsException(
       UserEmailExistsException e) {
-    ErrorResponse response = new ErrorResponse(e.getMessage(), null);
+    ErrorResponse response = new ErrorResponse(e.getMessage());
     return ResponseEntity.status(CONFLICT).body(response);
   }
 }

@@ -1,25 +1,18 @@
 package com.sivalabs.usermanagement.domain.registration;
 
-import com.sivalabs.usermanagement.entities.exceptions.BadRequestException;
+import com.sivalabs.usermanagement.entities.exceptions.EmptyRequiredFieldException;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 class CreateUserRequestValidator {
 
 
   public CreateUserRequest validate(CreateUserRequest request) {
-    List<String> errors = new ArrayList<>(0);
     if (isBlank(request.getName())) {
-      errors.add("Name is required");
+      throw new EmptyRequiredFieldException("Name");
     }
     if (isBlank(request.getEmail())) {
-      errors.add("Email is required");
-    }
-    if (!errors.isEmpty()) {
-      throw new BadRequestException("Invalid user registration request", errors);
+      throw new EmptyRequiredFieldException("Email");
     }
 
     return request;
