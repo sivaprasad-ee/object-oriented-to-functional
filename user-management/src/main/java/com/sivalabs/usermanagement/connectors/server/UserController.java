@@ -1,19 +1,22 @@
 package com.sivalabs.usermanagement.connectors.server;
 
-import com.sivalabs.usermanagement.entities.User;
-import com.sivalabs.usermanagement.entities.exceptions.EmptyRequiredFieldException;
-import com.sivalabs.usermanagement.entities.exceptions.UserEmailExistsException;
-import com.sivalabs.usermanagement.domain.registration.CreateUserRequest;
-import com.sivalabs.usermanagement.domain.registration.UserRegistrationService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.net.URI;
-
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
+
+import com.sivalabs.usermanagement.domain.registration.CreateUserRequest;
+import com.sivalabs.usermanagement.domain.registration.UserRegistrationService;
+import com.sivalabs.usermanagement.entities.User;
+import com.sivalabs.usermanagement.entities.exceptions.EmptyRequiredFieldException;
+import com.sivalabs.usermanagement.entities.exceptions.UserEmailExistsException;
+import java.net.URI;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/users")

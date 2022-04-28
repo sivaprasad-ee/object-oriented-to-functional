@@ -1,8 +1,8 @@
 package com.sivalabs.usermanagement.domain.registration;
 
-import com.sivalabs.usermanagement.entities.User;
 import com.sivalabs.usermanagement.domain.UserEventPublisher;
 import com.sivalabs.usermanagement.domain.UserRepository;
+import com.sivalabs.usermanagement.entities.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

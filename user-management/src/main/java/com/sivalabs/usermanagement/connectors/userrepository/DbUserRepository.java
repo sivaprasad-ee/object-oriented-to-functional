@@ -1,8 +1,8 @@
 package com.sivalabs.usermanagement.connectors.userrepository;
 
-import com.sivalabs.usermanagement.entities.User;
 import com.sivalabs.usermanagement.domain.UserRepository;
 import com.sivalabs.usermanagement.domain.registration.CreateUserRequest;
+import com.sivalabs.usermanagement.entities.User;
 import com.sivalabs.usermanagement.entities.exceptions.UserEmailExistsException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,8 @@ public class DbUserRepository implements UserRepository {
     if (userPersistence.existsByEmail(user.getEmail())) {
       throw new UserEmailExistsException(user.getEmail());
     }
-    return userPersistence.save(new JpaUser(null, user.getName(), user.getEmail(), user.getPhone()));
+    return userPersistence
+        .save(new JpaUser(null, user.getName(), user.getEmail(), user.getPhone()));
   }
 
   @Override

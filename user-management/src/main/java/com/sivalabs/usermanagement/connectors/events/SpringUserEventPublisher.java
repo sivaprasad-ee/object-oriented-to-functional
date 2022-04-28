@@ -1,8 +1,8 @@
 package com.sivalabs.usermanagement.connectors.events;
 
-import com.sivalabs.usermanagement.entities.User;
-import com.sivalabs.usermanagement.domain.UserEventPublisher;
 import com.sivalabs.usermanagement.connectors.events.model.UserCreatedEvent;
+import com.sivalabs.usermanagement.domain.UserEventPublisher;
+import com.sivalabs.usermanagement.entities.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
