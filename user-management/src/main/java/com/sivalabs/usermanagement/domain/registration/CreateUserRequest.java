@@ -7,7 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public class CreateUserRequest {
 
-  private String name;
-  private String email;
-  private String phone;
+  private final String name;
+  private final String email;
+  private final String phone;
+
 }

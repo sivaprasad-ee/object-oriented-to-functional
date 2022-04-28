@@ -11,6 +11,7 @@ import com.sivalabs.usermanagement.entities.exceptions.EmptyRequiredFieldExcepti
 import com.sivalabs.usermanagement.entities.exceptions.UserEmailExistsException;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,21 +27,21 @@ public class UserController {
   private final UserRegistrationService userRegistrationService;
 
   @PostMapping
-  public ResponseEntity<Void> registerUser(@RequestBody CreateUserRequest request) {
+  public ResponseEntity<Void> registerUser(@RequestBody final CreateUserRequest request) {
     User user = userRegistrationService.createUser(request);
     URI location = fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
     return ResponseEntity.created(location).build();
   }
 
   @ExceptionHandler(EmptyRequiredFieldException.class)
-  public ResponseEntity<ErrorResponse> handleBadRequestException(EmptyRequiredFieldException e) {
+  public ResponseEntity<ErrorResponse> handleBadRequestException(final EmptyRequiredFieldException e) {
     ErrorResponse response = new ErrorResponse(e.getMessage());
     return ResponseEntity.status(BAD_REQUEST).body(response);
   }
 
   @ExceptionHandler(UserEmailExistsException.class)
   public ResponseEntity<ErrorResponse> handleResourceAlreadyExistsException(
-      UserEmailExistsException e) {
+      final UserEmailExistsException e) {
     ErrorResponse response = new ErrorResponse(e.getMessage());
     return ResponseEntity.status(CONFLICT).body(response);
   }

@@ -2,6 +2,7 @@ package com.sivalabs.usermanagement.connectors.events;
 
 import com.sivalabs.usermanagement.connectors.events.model.UserCreatedEvent;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class SpringUserEventListener {
 
   @EventListener
-  public void handleUserCreatedEvent(UserCreatedEvent event) {
+  public void handleUserCreatedEvent(@NotNull final UserCreatedEvent event) {
     log.info("Welcome aboard {}!", event.getName());
   }
 }

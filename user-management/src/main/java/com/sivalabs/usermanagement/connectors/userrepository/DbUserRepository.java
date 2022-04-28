@@ -6,6 +6,7 @@ import com.sivalabs.usermanagement.entities.User;
 import com.sivalabs.usermanagement.entities.exceptions.UserEmailExistsException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,9 +18,9 @@ public class DbUserRepository implements UserRepository {
 
   private final JpaUserPersistence userPersistence;
 
-
+  @NotNull
   @Override
-  public User save(CreateUserRequest user) {
+  public User save(@NotNull final CreateUserRequest user) {
     if (userPersistence.existsByEmail(user.getEmail())) {
       throw new UserEmailExistsException(user.getEmail());
     }
